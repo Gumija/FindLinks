@@ -5,8 +5,7 @@ from lxml import html
 from selectolax.parser import HTMLParser
 
 def start():
-    print("Starting parsing XML")
-    path = '../index.html'
+    path = 'index.html'
     if len(sys.argv) > 1:
         path = sys.argv[1]
     text = readFile(path)

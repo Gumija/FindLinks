@@ -4,8 +4,7 @@ import time
 import re
 
 def start():
-    print("Starting parsing XML")
-    path = '../index.html'
+    path = 'index.html'
     if len(sys.argv) > 1:
         path = sys.argv[1]
     text = readFile(path)
@@ -20,7 +19,7 @@ def parseReferencesRegex(text):
     links = re.findall('<a.*href="(.*)".*>', text)
     end = time.time()
     duration = end -start
-    print("LXML")
+    print("Python Regex")
     print(f"Duration: {duration}\t Found: {len(links)}")
 
 
