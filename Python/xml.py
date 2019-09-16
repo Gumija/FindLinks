@@ -2,28 +2,37 @@
 import sys
 import time
 from lxml import html
+from selectolax.parser import HTMLParser
 
 def start():
     print("Starting parsing XML")
     path = '../index.html'
     if len(sys.argv) > 1:
         path = sys.argv[1]
-    # text = readFile(path)
-    parseReferencesLXML(path)
+    text = readFile(path)
+    parseReferencesLXML(text)
+    parseReferencesSelectolax(text)
 
 def readFile(path):
-    f = open(path, 'r')
+    f = open(path, 'r', encoding="latin-1")
     return f.read()
 
-def parseReferencesLXML(path):
+def parseReferencesLXML(text):
     start = time.time()
-    tree = html.parse(path)
-    links = [el.attrib['href'] for el in tree.findall('//a')]
+    tree = html.fromstring(text)
+    links = [el.attrib['href'] for el in tree.findall('.//a')]
     end = time.time()
     duration = end -start
-    print("LXML")
+    print("Python LXML")
     print(f"Duration: {duration}\t Found: {len(links)}")
 
-
+def parseReferencesSelectolax(text):
+    start = time.time()    
+    html_parser = HTMLParser(text)
+    links = [tag.attrs['href'] for tag in html_parser.tags('a') if 'href' in tag.attrs]
+    end = time.time()
+    duration = end - start
+    print(f"Python Selectolax")
+    print(f"Duration: {duration}\t Found: {len(links)}")
 
 start()
