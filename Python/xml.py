@@ -22,8 +22,7 @@ def parseReferencesLXML(text):
     links = [el.attrib['href'] for el in tree.findall('.//a')]
     end = time.time()
     duration = end -start
-    print("Python LXML")
-    print(f"Duration: {duration}\t Found: {len(links)}")
+    print(f"Python LXML\t\t\t\tDuration: {duration:.9f}\t Found: {len(links)}")
 
 def parseReferencesSelectolax(text):
     start = time.time()    
@@ -31,7 +30,6 @@ def parseReferencesSelectolax(text):
     links = [tag.attrs['href'] for tag in html_parser.tags('a') if 'href' in tag.attrs]
     end = time.time()
     duration = end - start
-    print(f"Python Selectolax")
-    print(f"Duration: {duration}\t Found: {len(links)}")
+    print(f"Python Selectolax\t\t\tDuration: {duration:.9f}\t Found: {len(links)}")
 
 start()

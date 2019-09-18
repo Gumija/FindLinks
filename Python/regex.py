@@ -19,8 +19,7 @@ def parseReferencesRegex(text):
     links = re.findall('<a.*href="(.*)".*>', text)
     end = time.time()
     duration = end -start
-    print("Python Regex")
-    print(f"Duration: {duration}\t Found: {len(links)}")
+    print(f"Python Regex\t\t\t\tDuration: {duration:.9f}\t Found: {len(links)}")
 
 
 

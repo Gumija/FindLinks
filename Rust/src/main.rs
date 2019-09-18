@@ -16,11 +16,10 @@ fn read_html() -> String {
 }
 
 fn find_all_links(html:&str){
-    println!("Rust Regex");
     let now = Instant::now();
     let re = Regex::new("<a.*href=\"(.*)\".*>").unwrap();
     let iter = re.find_iter(html);
     let dur = now.elapsed();
-    let result = format!("Duration: {s}.{sub:09}\t\t Found: {f}", f = iter.count(), s = dur.as_secs(), sub = dur.subsec_nanos() );
+    let result = format!("Rust Regex\t\t\t\tDuration: {s}.{sub:09}\t Found: {f}", f = iter.count(), s = dur.as_secs(), sub = dur.subsec_nanos() );
     println!("{}", result);
 }
